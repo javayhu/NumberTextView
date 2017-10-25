@@ -12,11 +12,8 @@
 
     <me.javayhu.lib.NumberTextView
         android:id="@+id/numberTextView"
-        style="@style/NumberTextViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp" />
-
-    <!--style="@style/NumberTextViewStyle"-->
 
 </LinearLayout>

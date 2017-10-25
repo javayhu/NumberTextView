@@ -14,11 +14,11 @@
         <item name="NumberTextViewStyle">@style/CustomNumberTextViewStyle.Night</item>
     </style>
 
-    <style name="CustomNumberTextViewStyle" parent="DefaultNumberTextViewStyle">
+    <style name="CustomNumberTextViewStyle" parent="Widget.NumberTextViewStyle">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="CustomNumberTextViewStyle.Night" parent="DefaultNumberTextViewStyle">
+    <style name="CustomNumberTextViewStyle.Night" parent="Widget.NumberTextViewStyle">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
 

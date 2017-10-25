@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //final NumberTextView numberTextView2 = new NumberTextView(this, null, 0, R.style.NumberTextViewStyle);//这个NumberTextView会使用第四个构造方法，但是在Android 5.0及以下版本的系统中会crash
-        final NumberTextView numberTextView2 = new NumberTextView(this, null, R.style.NumberTextViewStyle);//这个NumberTextView会使用第三个构造方法
+        final NumberTextView numberTextView2 = new NumberTextView(this, null, R.style.Widget_NumberTextViewStyle);//这个NumberTextView会使用第三个构造方法
         numberTextView2.setCount(998);
         numberTextView2.setTextSize(60);
         numberTextView2.setOnClickListener(new View.OnClickListener() {

@@ -51,22 +51,16 @@ public class NumberTextView extends View {
     }
 
     public NumberTextView(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        this(context, attrs, R.attr.NumberTextViewStyle);
     }
 
     public NumberTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, attrs, defStyleAttr, 0);
+        init(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public NumberTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-        init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberTextView, defStyleAttr, defStyleRes);
+    private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberTextView, defStyleAttr, R.style.Widget_NumberTextViewStyle);
         this.mTextColor = attributes.getColor(R.styleable.NumberTextView_android_textColor, DEFAULT_COLOR);
         this.mTextSize = attributes.getDimensionPixelSize(R.styleable.NumberTextView_android_textSize, DEFAULT_SIZE);
         this.mCount = attributes.getInteger(R.styleable.NumberTextView_count, DEFAULT_COUNT);
@@ -275,10 +269,6 @@ public class NumberTextView extends View {
             mTextPaint.setTextSize(size);
         }
         invalidate();
-    }
-
-    private int sp2px(Context context, int sp) {
-        return (int) (context.getResources().getDisplayMetrics().scaledDensity * sp + 0.5f);
     }
 
 }

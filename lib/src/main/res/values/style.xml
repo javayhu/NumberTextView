@@ -2,7 +2,7 @@
 <resources>
 
     <!--声明NumberTextView的默认style-->
-    <style name="DefaultNumberTextViewStyle" parent="android:Widget">
+    <style name="Widget.NumberTextViewStyle" parent="android:Widget">
         <item name="android:textColor">@color/color_number</item>
         <item name="android:textSize">20sp</item>
         <item name="duration">mediumAnimTime</item>

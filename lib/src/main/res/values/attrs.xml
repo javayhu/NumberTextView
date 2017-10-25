@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="NumberTextView">
         <attr name="count" format="integer" />
+        <!--枚举形式的属性-->
         <attr name="duration" format="enum">
             <!--@android:integer/config_shortAnimTime-->
             <enum name="shortAnimTime" value="200" />
@@ -10,10 +11,11 @@
             <!--@android:integer/config_longAnimTime-->
             <enum name="longAnimTime" value="500" />
         </attr>
+        <!--可以直接使用android自带的一些属性名-->
         <attr name="android:textColor" />
         <attr name="android:textSize" />
     </declare-styleable>
 
-    <!--声明一个NumberTextViewStyle的属性，可以在theme中进行配置-->
+    <!--声明一个名为NumberTextViewStyle的属性，这样就可以在theme中通过配置这个属性修改全局的NumberTextView的style-->
     <attr name="NumberTextViewStyle" format="reference" />
 </resources>
