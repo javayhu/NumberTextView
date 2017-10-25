@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="NumberTextViewStyle">@style/CustomNumberTextViewStyle</item>
+    </style>
+
+    <style name="AppTheme.Night" parent="AppTheme">
+        <item name="NumberTextViewStyle">@style/CustomNumberTextViewStyle.Night</item>
+    </style>
+
+    <style name="CustomNumberTextViewStyle" parent="DefaultNumberTextViewStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomNumberTextViewStyle.Night" parent="DefaultNumberTextViewStyle">
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
 </resources>

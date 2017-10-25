@@ -3,14 +3,17 @@ package me.javayhu.lib;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
@@ -22,15 +25,17 @@ import android.view.animation.OvershootInterpolator;
  */
 public class NumberTextView extends View {
 
+    private static final String TAG = NumberTextView.class.getSimpleName();
+
     private static final int DEFAULT_COUNT = 0;
     private static final int DEFAULT_COLOR = Color.BLACK;
-    private static final int DEFAULT_SIZE = 14;
-    private static final int DEFAULT_DURATION = 400;
+    private static final int DEFAULT_SIZE = 70;//font px size
+    private static final int DEFAULT_DURATION = 400;//android.R.integer.config_mediumAnimTime
 
-    private int mCount = DEFAULT_COUNT;//当前的数值
-    private int mTextColor = DEFAULT_COLOR;//数字的颜色
-    private int mTextSize = DEFAULT_SIZE;//数字的大小
-    private int mDuration = DEFAULT_DURATION;//android.R.integer.config_mediumAnimTime
+    private int mCount;//当前的数值
+    private int mTextColor;//数字的颜色
+    private int mTextSize;//数字的大小
+    private int mDuration;//动画的执行时间
 
     //以 123 和 124 为例，mCountSamePart 是 12， mCountDiffOld 是 3， mCountDiffNew 是 4
     private String mCountSamePart;
@@ -51,18 +56,23 @@ public class NumberTextView extends View {
 
     public NumberTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs, defStyleAttr, 0);
+    }
 
-        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberTextView);
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public NumberTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        init(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    private void init(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberTextView, defStyleAttr, defStyleRes);
         this.mTextColor = attributes.getColor(R.styleable.NumberTextView_android_textColor, DEFAULT_COLOR);
         this.mTextSize = attributes.getDimensionPixelSize(R.styleable.NumberTextView_android_textSize, DEFAULT_SIZE);
         this.mCount = attributes.getInteger(R.styleable.NumberTextView_count, DEFAULT_COUNT);
         this.mDuration = attributes.getInteger(R.styleable.NumberTextView_duration, DEFAULT_DURATION);
         attributes.recycle();
 
-        init();
-    }
-
-    private void init() {
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
         mTextPaint.setColor(mTextColor);
@@ -265,6 +275,10 @@ public class NumberTextView extends View {
             mTextPaint.setTextSize(size);
         }
         invalidate();
+    }
+
+    private int sp2px(Context context, int sp) {
+        return (int) (context.getResources().getDisplayMetrics().scaledDensity * sp + 0.5f);
     }
 
 }

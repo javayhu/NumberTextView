@@ -13,4 +13,7 @@
         <attr name="android:textColor" />
         <attr name="android:textSize" />
     </declare-styleable>
+
+    <!--声明一个NumberTextViewStyle的属性，可以在theme中进行配置-->
+    <attr name="NumberTextViewStyle" format="reference" />
 </resources>
