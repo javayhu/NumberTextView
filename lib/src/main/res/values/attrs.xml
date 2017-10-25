@@ -2,8 +2,15 @@
 <resources>
     <declare-styleable name="NumberTextView">
         <attr name="count" format="integer" />
-        <attr name="duration" format="integer" />
-        <attr name="textColor" format="color" />
-        <attr name="textSize" format="dimension" />
+        <attr name="duration" format="enum">
+            <!--@android:integer/config_shortAnimTime-->
+            <enum name="shortAnimTime" value="200" />
+            <!--@android:integer/config_mediumAnimTime-->
+            <enum name="mediumAnimTime" value="400" />
+            <!--@android:integer/config_longAnimTime-->
+            <enum name="longAnimTime" value="500" />
+        </attr>
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
     </declare-styleable>
 </resources>

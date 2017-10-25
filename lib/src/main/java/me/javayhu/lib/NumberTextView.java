@@ -13,6 +13,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 
 /**
  * 自带数字切换效果的数字显示组件
@@ -52,8 +53,8 @@ public class NumberTextView extends View {
         super(context, attrs, defStyleAttr);
 
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.NumberTextView);
-        this.mTextColor = attributes.getColor(R.styleable.NumberTextView_textColor, DEFAULT_COLOR);
-        this.mTextSize = attributes.getDimensionPixelSize(R.styleable.NumberTextView_textSize, DEFAULT_SIZE);
+        this.mTextColor = attributes.getColor(R.styleable.NumberTextView_android_textColor, DEFAULT_COLOR);
+        this.mTextSize = attributes.getDimensionPixelSize(R.styleable.NumberTextView_android_textSize, DEFAULT_SIZE);
         this.mCount = attributes.getInteger(R.styleable.NumberTextView_count, DEFAULT_COUNT);
         this.mDuration = attributes.getInteger(R.styleable.NumberTextView_duration, DEFAULT_DURATION);
         attributes.recycle();
@@ -160,7 +161,7 @@ public class NumberTextView extends View {
         }
         mValueAnimator = ValueAnimator.ofFloat(start, end);
         mValueAnimator.setDuration(mDuration);
-        mValueAnimator.setInterpolator(new LinearInterpolator());
+        mValueAnimator.setInterpolator(new LinearInterpolator());//new OvershootInterpolator()
         mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
