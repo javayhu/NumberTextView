@@ -1,4 +1,4 @@
-自定义View的一些小知识
+**自定义View的一些小知识**
 
 
 
@@ -88,9 +88,7 @@ NumberTextView有四个属性，其中 `textSize` 和 `textColor` 两个属性�
 
 第四个参数 `defStyleRes` 看起来也是用来定义默认style的，而且它是**直接指向一个默认style**，但是呢，它却不一定能够生效！这个style中声明的属性值的优先级特别低，只有当前面的 `defStyleAttr` 为0或者 `defStyleAttr`  不为0但Theme中没有为  `defStyleAttr`  属性赋值时才起到作用。
 
-如果还没有很清楚的话，可以参考阅读[Android中自定义样式与View的构造函数中的第三个参数defStyle的意义](http://www.cnblogs.com/angeldevil/p/3479431.html)这篇文章，它更加详细地解释了这几个参数的作用。
-
-
+[如果还没有很清楚的话，可以参考阅读[Android中自定义样式与View的构造函数中的第三个参数defStyle的意义](http://www.cnblogs.com/angeldevil/p/3479431.html)这篇文章，它更加详细地解释了这几个参数的作用。]
 
 **(2.2) 属性值的优先级高低**
 
@@ -100,25 +98,39 @@ NumberTextView有四个属性，其中 `textSize` 和 `textColor` 两个属性�
 
 
 
+OK，有了前面的进阶知识，下面我们看下如何改进吧
+
+**（1）定义defStyleAttr**
+
+首先是在 `attrs.xml` 中定义一个attribute，然后在Theme中配置它。这里我在demo应用中右上角增加了一个主题切换按钮，点击即可在白天模式和夜间模式之间切换。这里用了AppCompat中提供的夜间模式实现方案，新建了`values-night` 目录，并在其中的 `styles.xml` 中稍微修改了NumberTextView的字体颜色。
+
+![img](customview_attribute_theme.png)
+
+**（2）定义defStyleRes**
+
+接着在 `styles.xml` 中定义一个style，这个style就是指第四个参数 `defStyleRes`。
+
+![img](customview_numberviewstyle.png)
+
+**（3）改进构造方法**
+
+修改NumberTextView的第二个构造方法，将默认的 `defStyleAttr` 改为了刚刚声明的 `R.attr.NumberTextViewStyle`，然后在初始化方法中使用四个参数的版本，另外第四个参数使用刚刚声明的 `R.style.Widget_NumberTextViewStyle`。
+
+![img](customview_numbertextview.png)
+
+[注：如果你的应用的minSDKVersion是21的话，那么其实还可以声明第四个构造方法，也就是包含4个参数的最全的那个构造方法，如果低于21的话那就没有必要声明第四个构造方法]
 
 
 
+经过上面的改进，我们就得到了[V3.0]()，下图是demo的图示，三个不同的NumberTextView主要受到不同地方的属性配置的影响，你也可以修改代码查看效果来验证本文的结论。
 
 ![img](customview_daynight.png)
 
+[前面两个NumberTextView在白天模式和夜间模式下的字体颜色是不同的，这些都不需要修改自定义View的实现代码，只需要在合适的位置配置相应的属性值就可以了]
 
 
-1.自定义View可以使用android系统原生提供的属性名
 
-2.自定义View的属性值如果是枚举类型，那么需要在属性声明的地方列举出来
-
-3.自定义View的默认属性值可以在style中声明出来 (以便在不同的theme中使用)
-
-4.自定义View尽可能对编辑模式友好
-
-5.自定义View的数据保存和恢复
-
-
+其实，自定义View中还有很多的小细节，例如对编辑模式更友好些，避免只显示一个类名在Preview视图中，还有对于View在异常情况下进行数据保存和恢复的工作等等。
 
 
 
@@ -126,5 +138,7 @@ NumberTextView有四个属性，其中 `textSize` 和 `textColor` 两个属性�
 
 1.[Android中自定义样式与View的构造函数中的第三个参数defStyle的意义](http://www.cnblogs.com/angeldevil/p/3479431.html)
 
-2.
+2.[从 View 构造函数中被忽略的 {int defStyleAttr} 说起](https://blog.lujun.co/2017/05/09/ignored-parameter-defStyleAttr-in-view-construct/)
+
+3.[A deep dive into Android View constructors](http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/)
 
