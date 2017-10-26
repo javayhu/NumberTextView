@@ -122,7 +122,7 @@ OK，有了前面的进阶知识，下面我们看下如何改进吧
 
 
 
-经过上面的改进，我们就得到了[V3.0]()，下图是demo的图示，三个不同的NumberTextView主要受到不同地方的属性配置的影响，你也可以修改代码查看效果来验证本文的结论。
+经过上面的改进，我们就得到了[V3.0](https://github.com/hujiaweibujidao/NumberTextView/tree/v3.0)，下图是demo的图示，三个不同的NumberTextView主要受到不同地方的属性配置的影响，你也可以修改代码查看效果来验证本文的结论。
 
 ![img](customview_daynight.png)
 
