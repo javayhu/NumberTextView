@@ -80,13 +80,15 @@ NumberTextView有四个属性，其中 `textSize` 和 `textColor` 两个属性�
 
 前面我们已经分析了这个方法的第一个和第二个参数，下面我们来慢慢看下后面两个参数。
 
-第三个参数 `defStyleAttr` 顾名思义就是用来指向默认style的attribute，也就是说它的本质是一个**attribute**，但是它是用来指向一个默认 **style** 的，那它是在哪里配置它指向哪个style的呢？答案是在Theme中配置的。**当在布局XML和style中都没有指定View的某个属性值时，就会从Theme中这个attribute指向的style中查找相应的属性值，如果有的话就用这个值作为这个属性的默认值。但是如果在Theme中没有给这个attribute赋值或者赋值为0的话表示不向Theme中搜索默认值。**
+第三个参数 `defStyleAttr` 顾名思义就是用来指向默认style的attribute，也就是说它的本质是一个**attribute**，但是它是用来指向一个默认 **style** 的，那它是在哪里配置它指向哪个style的呢？答案是在Theme中配置的。**当在布局XML和style中都没有指定View的某个属性值时，就会从Theme中这个attribute指向的style中查找相应的属性值，如果有的话就用这个值作为这个属性的默认值。但是如果在Theme中没有给这个attribute赋值或者赋值为0的话表示不向Theme中搜索默认值。** 
 
 前面我们看到Android源码中Button组件的第二个构造方法传给第三个构造方法时的最后一个参数是 `com.android.internal.R.attr.buttonStyle`，这就是Android系统声明的可以用来修改Button样式的attribute，从下图中可以看出，Android系统中不同的Theme下都给Button组件设置了不同的style。
 
 ![img](customview_buttonstyle.png)
 
-第四个参数 `defStyleRes` 看起来也是用来定义默认style的，而且它是**直接指向一个默认style**，但是呢，它却不一定能够生效！这个style中声明的属性值的优先级特别低，只有当前面的 `defStyleAttr` 为0或者 `defStyleAttr`  不为0但Theme中没有为  `defStyleAttr`  属性赋值时才起到作用。
+第四个参数 `defStyleRes` 看起来也是用来定义默认style的，而且它是**直接指向一个默认style**，但是呢，它却不一定能够生效！**这个style中声明的属性值的优先级特别低，只有当前面的 `defStyleAttr` 为0或者 `defStyleAttr`  不为0但Theme中没有为  `defStyleAttr`  属性赋值时才起到作用。**
+
+刚看的时候可能会觉得第三个参数没有必要，觉得反正第四个参数提供了默认的style了。但是，其实它们的实际常用的场景是不同的，如果是希望自定义View的使用者在不怎么了解内部实现不想要进行特别定制的情况下就能够让自定义View很好地work的话，那么实际需要的是第四个参数。但是如果是希望自定义View在不同的主题下能够有不同的风格的话，那么我们就需要在对应的Theme下对这个自定义View设置一个style，那么怎么设置呢？这里就需要声明一个attribute，然后在自定义View的构造方法中传入这个attribute进行关联，最后在Theme中对这个attribute进行配置之后就能够生效啦！这就是第三个和第四个参数的重要区别！
 
 [如果还没有很清楚的话，可以参考阅读[Android中自定义样式与View的构造函数中的第三个参数defStyle的意义](http://www.cnblogs.com/angeldevil/p/3479431.html)这篇文章，它更加详细地解释了这几个参数的作用。]
 
