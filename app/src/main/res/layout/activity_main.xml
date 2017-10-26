@@ -6,14 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="100dp"
-    android:paddingTop="100dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:paddingTop="30dp"
     tools:context="me.javayhu.numbertextview.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:lineSpacingMultiplier="1.5"
+        android:text="本应用以数字切换效果为例解释自定义组件中属性由哪个配置来决定，点击数字可看到数字切换效果，点击右上角图标可看到主题切换效果，详情看代码" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="默认的风格 (主要受Theme中style配置影响)" />
+
     <me.javayhu.lib.NumberTextView
-        android:id="@+id/numberTextView"
+        android:id="@+id/numberTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="默认的风格 + XML style配置 (主要受XML中style影响)" />
+
+    <me.javayhu.lib.NumberTextView
+        android:id="@+id/numberTextView2"
+        style="@style/AnotherCustomNumberTextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="默认的风格 + XML属性配置 (主要受XML中属性配置影响)" />
+
+    <me.javayhu.lib.NumberTextView
+        android:id="@+id/numberTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/app_color_theme_2"
+        android:textSize="60sp" />
 
 </LinearLayout>

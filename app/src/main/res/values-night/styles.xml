@@ -10,12 +10,12 @@
     </style>
 
     <style name="CustomNumberTextViewStyle" parent="Widget.NumberTextViewStyle">
-        <item name="android:textColor">@color/app_color_theme_6</item>
+        <item name="android:textColor">@color/app_color_theme_4</item>
         <item name="android:textSize">30sp</item>
     </style>
 
     <style name="AnotherCustomNumberTextViewStyle" parent="Widget.NumberTextViewStyle">
-        <item name="android:textColor">@color/app_color_theme_8</item>
+        <item name="android:textColor">@color/app_color_theme_9</item>
         <item name="android:textSize">50sp</item>
     </style>
 
