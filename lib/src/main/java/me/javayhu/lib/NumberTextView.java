@@ -83,6 +83,14 @@ public class NumberTextView extends View {
     }
 
     @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mValueAnimator != null) {
+            mValueAnimator.cancel();
+        }
+    }
+
+    @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         setMeasuredDimension(calculateWidth(widthMeasureSpec), calculateHeight(heightMeasureSpec));
     }
